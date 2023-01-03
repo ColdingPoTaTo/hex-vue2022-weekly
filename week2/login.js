@@ -5,8 +5,8 @@ const app = {
     data() {
         return {
             user: {
-                username: 'aa',
-                password: 'a',
+                username: '',
+                password: '',
             },
             defaultUser: {
                 username: 'hexpotato@gmail.com',

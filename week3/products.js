@@ -21,12 +21,12 @@ const app = {
                     if (res.data.success) {
                         this.getProducts();
                     } else {
-                        alert('請先登入');
-                        window.location = 'login.html';
+                        alert(res.data.success);
                     }
                 })
                 .catch((err) => {
-                    alert('err');
+                    alert('請先登入');
+                    window.location = 'login.html';
                 })
         },
         getProducts() {
@@ -64,18 +64,17 @@ const app = {
                 url += `/${this.tempProduct.id}`
             }
             axios[httpMethod](url, { data: this.tempProduct }).then((res) => {
-                console.log("check point 儲存產品資料: ", res)
+                alert(res.data.message)
                 this.getProducts()
                 this.productModal.hide();
             }).catch((err) => {
-                console.log("check point 儲存產品err: ", err)
                 alert(err)
             })
         },
         deleteProduct(id) {
             const url = `${this.apiUrl}/api/${this.apiPath}/admin/product/${id}`
             axios.delete(url).then((res) => {
-                console.log("check point 刪除產品: ", res)
+                alert(res.data.message)
                 this.getProducts();
             })
 

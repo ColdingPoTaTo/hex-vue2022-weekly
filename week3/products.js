@@ -1,6 +1,4 @@
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
-const apiPath = 'https://vue3-course-api.hexschool.io/v2/api/hexpotato';
-//let productModal = null;
 
 const app = {
     data() {
@@ -29,8 +27,14 @@ const app = {
                     window.location = 'login.html';
                 })
         },
-        getProducts() {
-            const url = `${this.apiUrl}/api/${this.apiPath}/admin/products`;
+        getProducts(type = 'all') {
+            let url = `${this.apiUrl}/api/${this.apiPath}/admin/products`;
+            if (type == 'all') {
+                url += '/all'
+            } else {
+                //?pages 還沒使用到
+                // category
+            }
             axios.get(url).then((res) => {
                 if (res.data.success) {
                     this.products = res.data.products;
@@ -38,6 +42,7 @@ const app = {
                     alert(res.data.message);
                 }
             });
+
         },
         showModal(action, product) {
             switch (action) {
